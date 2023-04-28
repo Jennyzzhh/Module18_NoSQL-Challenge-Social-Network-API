@@ -1,7 +1,7 @@
-const { schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 
-const userSchema = new schema({
+const userSchema = new Schema({
     userName: {
         type: String,
         required: true,
@@ -14,13 +14,13 @@ const userSchema = new schema({
     },
     thoughts: [
         {
-            type:schema.Types.ObjectId,
+            type:Schema.Types.ObjectId,
             ref:'thought'
         },
     ],
     friends: [
         {
-            type:schema.Types.ObjectId,
+            type:Schema.Types.ObjectId,
             ref:'User'
         },
     ],
@@ -40,4 +40,4 @@ userSchema
 
 const User = model('User', userSchema)
 
-model.exports = User;
+module.exports = User;

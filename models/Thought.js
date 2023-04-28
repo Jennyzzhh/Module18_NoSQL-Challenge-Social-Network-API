@@ -12,6 +12,7 @@ const thoughtSchema = new Schema({
         type: Date,
         default: Date.now,
         // Use a getter method to format the timestamp on query ? 
+        get:(date)=>date.toLocaleDateString(),
 
     },
 
@@ -21,6 +22,7 @@ const thoughtSchema = new Schema({
     },
     //Array of nested documents created with the reactionSchema ?
     reactions: [reactionSchema],
+    //req.body
 
 },
     {
@@ -39,3 +41,5 @@ thoughtSchema
     })
 
   const Thought = model('Thought',thoughtSchema)  
+
+  module.exports = Thought;
