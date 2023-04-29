@@ -22,6 +22,6 @@ router.route('/:userId').get(getSingleUser).delete(deleteUser).put(updateUser);
 // router.route('/:userId/friends').
 
 //http://localhost:3001/api/users/1/friends/1
-router.route('/:userId/friends/:friendId').delete(removeFriend).post(addFriend)
 
+router.route('/:userId/friends/:friendId').post(addFriend).delete(removeFriend)
 module.exports = router;
