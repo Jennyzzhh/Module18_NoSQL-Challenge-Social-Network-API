@@ -7,17 +7,16 @@ const {
   deleteThought,
   addReaction,
   removeReaction,
-  
+
 } = require('../../controllers/thoughtController');
 
-
+//http://localhost:3001/api/thoughts/
 router.route('/').get(getThoughts).post(createThought);
 
+//http://localhost:3001/api/thoughts/1
+router.route('/:thoughtId').get(getSingleThought).delete(deleteThought).put(updateThought);
 
-router
-  .route('/:thoughtId')
-  .get(getSingleThought)
-  .put(updateThought)
-  .delete(deleteThought);
+//http://localhost:3001/api/thoughts/1/reactions/1
+router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction).post(addReaction)
 
 module.exports = router;
