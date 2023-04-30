@@ -92,13 +92,13 @@ module.exports = {
     removeReaction(req, res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $pull: { reactions:req.params.reactionId } },
+            { $pull: { reaction:{reactionId: req.params.reactionId} } },
             { runValidators: true, new: true }
         )
             .then((thought) =>
                 !thought
-                    ? res.status(404).json({ message: 'No user with this id' })
-                    : res.json(user)
+                    ? res.status(404).json({ message: 'No thought with this id' })
+                    : res.json(thought)
             )
             .catch((err) => res.status(500).json(err))
     }
