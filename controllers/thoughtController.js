@@ -75,7 +75,7 @@ module.exports = {
     },
     addReaction(req, res) {
         Thought.findOneAndUpdate(
-            { _id: req.params.reactionId },
+            { _id: req.params.thoughtId },
             //The $addToSet operator adds a value to an array unless the value is already present, in which case $addToSet does nothing to that array.
             // req.body
             // Contains key-value pairs of data submitted in the request body. By default, it is undefined, and is populated when you use body-parsing middleware such as body-parser and multer.
@@ -91,8 +91,8 @@ module.exports = {
     },
     removeReaction(req, res) {
         Thought.findOneAndUpdate(
-            { _id: req.params.reactionId },
-            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { _id: req.params.thoughtId },
+            { $pull: { reactions:req.params.reactionId } },
             { runValidators: true, new: true }
         )
             .then((thought) =>
